@@ -12,8 +12,20 @@ final class CoreDataStack {
     
     static let shared = CoreDataStack()
     
+    private let isTesting: Bool
+    
+    init(isTesting: Bool = false) {
+        self.isTesting = isTesting
+    }
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "DiaryModel")
+        
+        if isTesting {
+            let description = NSPersistentStoreDescription()
+            description.url = URL(fileURLWithPath: "/dev/null") // 인메모리 저장소 설정
+            container.persistentStoreDescriptions = [description]
+        }
         
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
