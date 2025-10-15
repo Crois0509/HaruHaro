@@ -8,14 +8,6 @@
 import Foundation
 import RxSwift
 
-/// 데이터 저장 및 관리를 위한 기본 엔티티 (Domain Model)
-struct DiaryEntry {
-    let id: UUID
-    let date: Date
-    let title: String
-    let content: String
-}
-
 /// iCloud 연결 상태 관리 모델
 enum CloudSyncStatus {
     case available
