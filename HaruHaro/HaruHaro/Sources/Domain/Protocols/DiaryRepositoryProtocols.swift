@@ -27,5 +27,5 @@ protocol DiaryRepository {
     
     // MARK: - Sync Status
     
-    func syncStatus() -> Observable<CloudSyncStatus>
+//    func syncStatus() -> Observable<CloudSyncStatus>
 }
