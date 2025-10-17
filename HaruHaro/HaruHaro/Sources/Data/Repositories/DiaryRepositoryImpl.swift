@@ -91,6 +91,29 @@ final class DiaryRepositoryImpl: DiaryRepository {
             return Disposables.create()
         }
     }
+    
+    func fetchEntries(for content: String) -> Observable<[DiaryEntry]> {
+        return .create { [weak self] observer in
+            guard let self else { return Disposables.create() }
+            let context = self.coreDataStack.mainContext
+            let fetchRequest: NSFetchRequest<Diary> = Diary.fetchRequest()
+            
+            do {
+                let diaries = try context.fetch(fetchRequest)
+                let entries = self.mapToDiaryEntries(diaries)
+                let filteredEntries = entries.filter {
+                    $0.content.contains(content)
+                }
+                
+                observer.onNext(filteredEntries)
+            } catch {
+                observer.onError(error)
+            }
+            
+            observer.onCompleted()
+            return Disposables.create()
+        }
+    }
 
     // MARK: - Delete
     

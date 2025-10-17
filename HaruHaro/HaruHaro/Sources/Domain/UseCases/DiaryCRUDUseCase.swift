@@ -61,4 +61,8 @@ final class DiaryCRUDUseCase {
     func fetchAllDiariesForDate(_ date: Date) -> Observable<[DiaryEntry]> {
         repository.fetchEntries(for: date)
     }
+    
+    func fetchAllDiariesForContent(_ content: String) -> Observable<[DiaryEntry]> {
+        repository.fetchEntries(for: content)
+    }
 }
