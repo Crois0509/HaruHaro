@@ -23,9 +23,10 @@ protocol DiaryRepository {
     func save(entry: DiaryEntry) -> Completable
     func fetchAllEntries() -> Observable<[DiaryEntry]>
     func fetchEntries(for date: Date) -> Observable<[DiaryEntry]>
+    func fetchEntries(for content: String) -> Observable<[DiaryEntry]>
     func delete(entry: DiaryEntry) -> Completable
     
     // MARK: - Sync Status
     
-    func syncStatus() -> Observable<CloudSyncStatus>
+//    func syncStatus() -> Observable<CloudSyncStatus>
 }

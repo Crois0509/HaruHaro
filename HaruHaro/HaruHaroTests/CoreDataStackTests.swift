@@ -35,7 +35,6 @@ final class CoreDataStackTests: XCTestCase {
         let newDiary = Diary(context: context)
         let unipueID = UUID()
         newDiary.id = unipueID
-        newDiary.title = "테스트 일기"
         newDiary.content = "CoreData 저장 테스트"
         newDiary.date = Date()
         
@@ -51,7 +50,6 @@ final class CoreDataStackTests: XCTestCase {
         XCTAssertEqual(fetchedResults.count, 1, "저장 후 정확히 하나의 엔티티가 조회되어야 합니다.")
         
         let savedDiary = fetchedResults.first
-        XCTAssertEqual(savedDiary?.title, "테스트 일기")
         XCTAssertEqual(savedDiary?.content, "CoreData 저장 테스트")
     }
 

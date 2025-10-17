@@ -11,6 +11,5 @@ import Foundation
 struct DiaryEntry {
     let id: UUID
     let date: Date
-    let title: String
     let content: String
 }
